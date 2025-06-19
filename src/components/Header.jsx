@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AVATAR_IMAGE_URL, LOGO_IMAGE_URL } from '../constants'
+import { AVATAR_IMAGE_URL, LOGO_IMAGE_URL } from '../constants/images'
 import { auth } from '../utils/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -64,7 +64,7 @@ const Header = () => {
   return (
     <>
       {user ? (
-        <div className='flex justify-between fixed top-0 left-0 right-0 px-5 w-full h-16 bg-black z-10' >
+        <div className='flex justify-between fixed top-0 left-0 right-0 px-5 w-full h-16 bg-gradient-to-b from-zinc-500 z-20' >
           <div className='flex flex-row justify-start items-start w-3/4 h-full'>
             <img src={LOGO_IMAGE_URL} alt="Netflix Logo" className='w-44 flex align-bottom' />
             <ul className='flex flex-row gap-4 text-white text-sm font-normal my-auto ml-4'>

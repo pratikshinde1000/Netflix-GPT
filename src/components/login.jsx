@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
-import { BACKGROUND_IMAGE_URL } from '../constants'
+import { BACKGROUND_IMAGE_URL } from '../constants/images'
 import { validateFormData } from '../utils/validator'
 import { toast } from 'react-toastify'
 import { auth } from '../utils/firebase'
