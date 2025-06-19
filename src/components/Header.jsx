@@ -1,15 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AVATAR_IMAGE_URL, LOGO_IMAGE_URL } from '../constants'
 import { auth } from '../utils/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { addUser, removeUser } from '../utils/userSlice';
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from 'react-redux';
 const Header = () => {
-
+  const dispatch = useDispatch();
   const [isDropdownVisible, setIsProfileDropdownVisible] = useState(false);
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is signed in!");
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid, email, displayName }));
+        navigate('/browse');
+      } else {
+        console.log("User is signed out!");
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+  }, [])
 
   const handleSignOut = () => {
     signOut(auth).then(() => {

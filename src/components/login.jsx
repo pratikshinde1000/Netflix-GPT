@@ -14,7 +14,7 @@ const login = () => {
   const [formType, setFormType] = useState('Sign In');
   const [isLoading, setIsLoading] = useState(false);
   const email = useRef(null);
-  const password = useRef(null);
+  const password = useRef(null);  
   const name = useRef(null);
 
   const handleFormTypeChange = () => {
@@ -41,7 +41,6 @@ const login = () => {
         const { uid, email, displayName } = auth.currentUser;
         console.log('Profile updated:', { uid, email, displayName });
         dispatch(addUser({ uid, email, displayName }));
-        navigate('/browse');
       }).catch((error) => {
         throw error;
       });
@@ -76,7 +75,6 @@ const login = () => {
         draggable: true,
         progress: undefined,
       });
-      navigate('/browse');
     } catch (error) {
       const errorMessage = error.message;
       console.error('Error signing in:', error.code, errorMessage);
