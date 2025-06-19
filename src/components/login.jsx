@@ -4,11 +4,12 @@ import { BACKGROUND_IMAGE_URL } from '../constants'
 import { validateFormData } from '../utils/validator'
 import { toast } from 'react-toastify'
 import { auth } from '../utils/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-
-
+import { useDispatch } from 'react-redux'
+import { addUser } from '../utils/userSlice';
 const login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formType, setFormType] = useState('Sign In');
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +35,16 @@ const login = () => {
         draggable: true,
         progress: undefined,
       });
+      updateProfile(auth.currentUser, {
+        displayName: formData.name
+      }).then(() => {
+        const { uid, email, displayName } = auth.currentUser;
+        console.log('Profile updated:', { uid, email, displayName });
+        dispatch(addUser({ uid, email, displayName }));
+        navigate('/browse');
+      }).catch((error) => {
+        throw error;
+      });
     } catch (error) {
       const errorMessage = error.message;
       console.error('Error signing up:', error.code, errorMessage);
@@ -46,7 +57,6 @@ const login = () => {
         draggable: true,
         progress: undefined,
       });
-      navigate('/browse');
     } finally {
       setIsLoading(false);
     }

@@ -19,7 +19,7 @@ const Body = () => {
       element: <Browse />
     }
   ])
-  
+
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -27,14 +27,12 @@ const Body = () => {
         console.log("User is signed in!");
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
-        navigate('/browse');
       } else {
         console.log("User is signed out!");
         dispatch(removeUser());
-        navigate('/');
       }
     });
-  }, [])
+  }, [auth])
 
   return (
     <div>
