@@ -12,7 +12,7 @@ const useFetchMovieVideos = (movieId) => {
             const response = await getRequest(MOVIES_API_URL.VIDEOS.replace('{movie_id}', movieId));
             const filteredVideos = response.results.filter(video => video.site === 'YouTube' && video.type === 'Trailer');
             const videoKey = filteredVideos.length > 0 ? filteredVideos[0].key : response.results[0].key;
-            dispatch(addTrailerVideo(`${MOVIES_API_URL.YOUTUBE_BASE_URL}/${videoKey}?&autoplay=1&mute=1`))
+            dispatch(addTrailerVideo(`${MOVIES_API_URL.YOUTUBE_BASE_URL}/${videoKey}?&autoplay=1&mute=1&loop=1&controls=0`));
         } catch (error) {
             console.log('Error', error);
         }

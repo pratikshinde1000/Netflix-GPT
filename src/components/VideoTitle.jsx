@@ -1,20 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 const VideoTitle = ({ title, overview }) => {
   return (
-
-    <div className='absolute justify-center text-white flex flex-col gap-3 w-screen aspect-video z-10 bg-gradient-to-r from-black'>
-      <div className='flex mt flex-col gap-5 w-full ml-[5%]'>
-        <h1 className='text-3xl font-bold' >{title}</h1>
-        <p className='text-md font-normal w-1/3'>{overview}</p>
-        <div className='flex text-xl text-start w-1/3 align-middle gap-2'>
-          <button className='bg-white opacity-100 hover:opacity-80 cursor-pointer hover:scale-3d h-full my-auto text-center px-6 w-4/12 py-1 text-black font-semibold rounded-lg'>Play ▶️</button>
-          <button className='bg-zinc-500 hover:opacity-80 cursor-pointer h-full my-auto px-6 w-4/12 py-1 text-white font-semibold rounded-lg'>More Info</button>
+    <div className="absolute justify-center mt-[5%] inset-0 flex flex-col  text-white bg-gradient-to-t from-black  z-10">
+      <div className="pl-[5%] pb-12">
+        <h1 className="text-4xl font-extrabold drop-shadow-lg">{title}</h1>
+        <p className="text-lg font-light mt-4 max-w-lg drop-shadow-md">{overview}</p>
+        <div className="flex gap-4 mt-6">
+          <button className="flex items-center justify-center bg-white text-black font-semibold text-lg px-8 py-3 rounded hover:bg-opacity-90 transition">
+            ▶️ Play
+          </button>
+          <button className="flex items-center justify-center bg-gray-700 text-white font-semibold text-lg px-8 py-3 rounded hover:bg-gray-600 transition">
+            More Info
+          </button>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default VideoTitle
+export default VideoTitle;

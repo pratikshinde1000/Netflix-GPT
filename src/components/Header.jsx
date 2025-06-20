@@ -64,11 +64,11 @@ const Header = () => {
   return (
     <>
       {user ? (
-        <div className='flex justify-between fixed top-0 left-0 right-0 px-5 w-full h-16 bg-gradient-to-b from-zinc-500 z-20' >
+        <div className='flex justify-between fixed top-0 left-0 right-0 px-5 w-full h-16 bg-gradient-to-b from-black z-50' >
           <div className='flex flex-row justify-start items-start w-3/4 h-full'>
             <img src={LOGO_IMAGE_URL} alt="Netflix Logo" className='w-44 flex align-bottom' />
             <ul className='flex flex-row gap-4 text-white text-sm font-normal my-auto ml-4'>
-              <span className='cursor-pointer hover:text-zinc-400 hover:scale-110'>Home</span>
+              <span className='font-cursive cursor-pointer hover:text-zinc-400 hover:scale-110'>Home</span>
               <span className='cursor-pointer hover:text-zinc-400 hover:scale-110'>TV Shows</span>
               <span className='cursor-pointer hover:text-zinc-400 hover:scale-110'>Movies</span>
               <span className='cursor-pointer hover:text-zinc-400 hover:scale-110'>Games</span>
