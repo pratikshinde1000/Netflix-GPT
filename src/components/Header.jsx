@@ -8,11 +8,20 @@ import { useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from 'react-redux';
+import { toggleGPTSearch } from '../utils/gptSlice';
+
 const Header = () => {
   const dispatch = useDispatch();
   const [isDropdownVisible, setIsProfileDropdownVisible] = useState(false);
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch)
+
+
+  const handleGPTSearchClick = () => {
+    // Logic for GPT Search click can be added here
+    dispatch(toggleGPTSearch());
+  }
 
 
   useEffect(() => {
@@ -79,6 +88,7 @@ const Header = () => {
           </div>
           <div className='flex flex-row justify-end items-center w-1/4 h-full'>
             <div className='flex flex-row justify-center items-center gap-5 text-white text-sm mx-4'>
+              <button onClick={handleGPTSearchClick} className='hover:scale-110 hover:text-zinc-400 cursor-pointer'>{showGPTSearch ? 'Home': 'GPT Search'  }</button>
               <span className='cursor-pointer hover:text-zinc-400 hover:scale-110'>Children</span>
               <img src="/notification.png" alt="bell-icon" className='w-5 h-5 cursor-pointer hover:scale-110' />
               <div className='flex flex-row justify-center items-center gap-2'>
