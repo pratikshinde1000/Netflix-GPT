@@ -3,8 +3,10 @@ import { getRequest } from "../services/axios";
 import { MOVIES_API_URL } from "../constants/apiUrls";
 import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
+import { useSelector } from "react-redux";
 const useFetchMovieVideos = (movieId) => {
 
+    const trailerVideo = useSelector(store => store.movies?.trailerVideo)
     const dispatch = useDispatch();
 
     const fetchMovieVideo = async () => {
@@ -19,7 +21,7 @@ const useFetchMovieVideos = (movieId) => {
     }
 
     useEffect(() => {
-        fetchMovieVideo();
+       if(!trailerVideo) fetchMovieVideo();
     }, [movieId])
 
 
